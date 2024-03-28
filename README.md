@@ -1,3 +1,4 @@
+## Introduction
 Current progress: Completed microservices, working on load balancing and api gateway.
 
 Monolithic Version of this project:
