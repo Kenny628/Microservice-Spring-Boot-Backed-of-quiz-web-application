@@ -17,36 +17,34 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
-
-
 @RestController
 @RequestMapping("quiz")
 public class QuizController {
 
-@Autowired
-QuizService quizService;
+    @Autowired
+    QuizService quizService;
 
-@PostMapping("create")
-public ResponseEntity<String> createQuiz(@RequestBody QuizDto quizDto){
-    return quizService.createQuiz(quizDto);
+    @PostMapping("create")
+    public ResponseEntity<String> createQuiz(@RequestBody QuizDto quizDto) {
+        return quizService.createQuiz(quizDto);
 
-}
+    }
 
-@GetMapping("get/{id}")
-public ResponseEntity<List<QuestionWrapper>> getQuiz(@PathVariable int id) {
-    return quizService.getQuiz(id);
-}
+    @GetMapping("get/{id}")
+    public ResponseEntity<List<QuestionWrapper>> getQuiz(@PathVariable int id) {
+        return quizService.getQuiz(id);
+    }
 
-@PostMapping("submit/{id}")
-public ResponseEntity<Integer> submitAnswers(@PathVariable int id,@RequestBody List<Response> responses) {
-    //TODO: process POST request
-    
-    return quizService.submitAnswers(id,responses);
-}
+    @PostMapping("submit/{id}")
+    public ResponseEntity<Integer> submitAnswers(@PathVariable int id, @RequestBody List<Response> responses) {
+        // TODO: process POST request
 
-@GetMapping("getQuestionIds/{id}")
-public ResponseEntity<List<Integer>> getQuestionIds(@PathVariable int id) {
-    return quizService.getQuestionIds(id);
-}
+        return quizService.submitAnswers(id, responses);
+    }
+
+    @GetMapping("getQuestionIds/{id}")
+    public ResponseEntity<List<Integer>> getQuestionIds(@PathVariable int id) {
+        return quizService.getQuestionIds(id);
+    }
 
 }

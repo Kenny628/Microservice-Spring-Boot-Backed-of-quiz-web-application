@@ -1,4 +1,5 @@
 package com.example.questionservice.controller;
+
 import com.example.questionservice.model.Question;
 import com.example.questionservice.model.QuestionWrapper;
 import com.example.questionservice.model.Response;
@@ -17,44 +18,46 @@ import com.example.questionservice.service.QuestionService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-
 @RestController
 @RequestMapping("question")
 public class QuestionController {
 
     @Autowired
     QuestionService questionService;
+
     @GetMapping("getallquestions")
-    public ResponseEntity<List<Question>> getAllQuestions(){
+    public ResponseEntity<List<Question>> getAllQuestions() {
         return questionService.getAllQuestions();
     }
+
     @GetMapping("category/{category}")
-    public ResponseEntity<List<Question>> getQuestionsByCategory(@PathVariable String category){
+    public ResponseEntity<List<Question>> getQuestionsByCategory(@PathVariable String category) {
         return questionService.getQuestionsByCategory(category);
     }
+
     @PostMapping("add")
     public ResponseEntity<String> addQuestion(@RequestBody Question question) {
         return questionService.addQuestion(question);
     }
 
+    // Use by quiz service
     @GetMapping("generate")
-    public ResponseEntity<List<Integer>> getQuestionsForQuiz(@RequestParam String CategoryName, @RequestParam Integer numQuestions) {
-        return questionService.getQuestionsForQuiz(CategoryName,numQuestions);
+    public ResponseEntity<List<Integer>> getQuestionsForQuiz(@RequestParam String CategoryName,
+            @RequestParam Integer numQuestions) {
+        return questionService.getQuestionsForQuiz(CategoryName, numQuestions);
     }
-
 
     @PostMapping("getQuestions")
     public ResponseEntity<List<QuestionWrapper>> getQuestions(@RequestBody List<Integer> id) {
         return questionService.getQuestions(id);
     }
-    
+
     @PostMapping("getScore")
     public ResponseEntity<Integer> getScores(@RequestBody List<Response> responses) {
         return questionService.getScores(responses);
     }
-    //generate
-    //getQuestions
-    //calculateResult
-    
+    // generate
+    // getQuestions
+    // calculateResult
 
 }
